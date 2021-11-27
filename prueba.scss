@@ -1,0 +1,126 @@
+@import"variables/variables";
+@import "nav";
+
+
+div {
+    background-color: rgb(129, 76, 173);
+    border: $border;
+    
+
+
+    p {
+       color: $color-main;
+       margin: $separacion;
+       padding: $separacion;
+    }
+}
+
+.color-main {
+    color: $color-main;
+}
+
+// =============
+// =============
+
+// =============
+//Operaciones
+$ancho: 15px;
+
+div {
+    width: ($ancho*2)-2;
+}
+
+
+// =============
+//Condicionales
+
+$animal:perro;
+
+div {
+    @if $animal == pato {
+        color: red;
+    } @else if $animal != pato {
+        color: blue;
+    }
+}
+
+// ==============
+// Bucles
+
+@for $i from 1 through 6 {
+    // interpolaciones
+
+    h#{$i} {
+        font-size: 12em /$i;
+    }
+    
+}
+
+// ============
+// Each
+
+$lista-colores: red, blue,green,yellow;
+
+@each $color in $lista-colores {
+
+    .color-#{$color} {
+        background-color: $color;
+    }
+    
+}
+
+@each $animal in puma,sea-slug,egret{
+    .#{$animal}-icon {
+        background-image: url("images/#{$animal}png");
+
+    }
+}
+
+// =============
+//Mapas
+
+$redes: (
+    twitter: #4feb,
+    facebook: rgb(25, 25, 110),
+    instagram: rgb(226, 118, 181),
+);
+    
+@each $red, $color in $redes {
+    .btn-#{$red}{
+        background-color: $color;
+    }
+    
+}
+
+// ===========
+// Extend
+
+.redsocial {
+    border: solid 2px rgb(214, 54, 54);
+    background-color: rgb(216, 158, 49);
+}
+
+.boton {
+    border: solid 2px gray;
+    background-color: honeydew;
+}
+ 
+.boton-primario {
+    @extend .boton;
+    color: hotpink;
+
+}
+
+// ========
+// Mixin
+
+@mixin size {
+    height: 20px;
+    width: 5px;
+    padding: 2px;
+    
+}
+
+.box{
+    @include size;
+}
